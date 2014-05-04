@@ -1,0 +1,22 @@
+<Context>
+	<Resource
+		  name="jdbc/iconaDS"
+		  auth="Container"
+		  type="javax.sql.DataSource"
+		  factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+		  initialSize="10"
+		  maxActive="100"
+		  maxIdle="50"
+		  minIdle="10"
+		  timeBetweenEvictionRunsMillis="30000"
+		  minEvictableIdleTimeMillis="60000"
+		  validationQuery="SELECT 1"
+		  validationInterval="30"
+		  testOnBorrow="true"
+		  removeAbandoned="true"
+		  removeAbandonedTimeout="60"
+		  username="icona"
+		  password="icona"
+		  driverClassName="org.postgresql.Driver"
+		  url="jdbc:postgresql://localhost:5432/icona" />
+ </Context>
