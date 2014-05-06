@@ -118,12 +118,14 @@ public class HMACAuthorizationRequestFilter implements ContainerRequestFilter {
 		//
 		UserKeyService userKeyService = ServiceFactory.getService(UserKeyService.class);
 		byte[] key = userKeyService.getUserKey(username);
+		System.out.println(new String(key, "UTF-8"));
 		
+		// Sign the message.
+		//
 		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		InputStream is = requestContext.getEntityStream();
 		IOUtils.copy(is, baos);
-		System.out.println(baos.toString());
 
 		requestContext.setEntityStream(new ByteArrayInputStream(baos.toByteArray()));
 	}

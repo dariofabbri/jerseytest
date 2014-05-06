@@ -43,7 +43,9 @@ public class ServiceFactory {
 				throw new RuntimeException(e);
 			}
 
-			instance.setSqlSessionFactory(sqlSessionFactory);
+			if(instance instanceof BaseDataService) {
+				((BaseDataService)instance).setSqlSessionFactory(sqlSessionFactory);
+			}
 			instances.put(serviceClass, instance);
 		}
 		

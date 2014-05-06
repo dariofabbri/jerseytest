@@ -1,5 +1,6 @@
 package com.iconamanagement.service.crypto;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,16 +10,18 @@ import org.slf4j.LoggerFactory;
 
 import com.iconamanagement.dao.user.User;
 import com.iconamanagement.dao.user.UserMapper;
-import com.iconamanagement.service.BaseService;
+import com.iconamanagement.service.BaseDataService;
+import com.iconamanagement.service.ServiceFactory;
 
 
-public class UserKeyService extends BaseService {
+public class UserKeyService extends BaseDataService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserKeyService.class);
 
 	private Map <String, byte []> keys;
 	
 	public UserKeyService() {
+
 		keys = new HashMap<String, byte[]>();
 	}
 	
@@ -52,7 +55,8 @@ public class UserKeyService extends BaseService {
 		
 		// Decode the encrypted key and store it in the cache.
 		//
-		byte[] decryptedKey = decrypt(user.getEncryptedKey());
+		AESCryptoService aescService = ServiceFactory.getService(AESCryptoService.class);
+		byte[] decryptedKey = aescService.decrypt(Base64.getDecoder().decode(user.getEncryptedKey()));
 		keys.put(username, decryptedKey);
 		
 		return decryptedKey;
