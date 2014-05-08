@@ -42,7 +42,7 @@ public class AESCryptoService extends BaseDataService {
 		
 		Properties prop = null;
 		try {
-			InputStream is = getClass().getResourceAsStream(AES_PROPERTIES_FILE_NAME);
+			InputStream is = this.getClass().getResourceAsStream(AES_PROPERTIES_FILE_NAME);
 			if(is == null){
 				String message = String.format("Unable to find %s in classpath.", AES_PROPERTIES_FILE_NAME);
 				logger.error(message);
